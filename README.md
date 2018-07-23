@@ -23,8 +23,8 @@ ng build --prod --aot --base-href=<url>
 </ul>
 
 # Method Used
-<a href="https://angular.io/api/forms/FormBuilder"> FormBuilder</a>
-<a href="https://angular.io/api/forms/FormGroup"> FormGroup</a>
+<a href="https://angular.io/api/forms/FormBuilder"> FormBuilder</a>,
+<a href="https://angular.io/api/forms/FormGroup"> FormGroup</a>,
 <a href="https://angular.io/api/forms/FormControl"> FormControl</a>
 
 
