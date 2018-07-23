@@ -1,0 +1,69 @@
+<form 
+  [formGroup] ="form" 
+  class="form" 
+  (submit) ="submitForm(form)">
+
+  <mat-form-field>
+    <input 
+      matInput required
+      type="email"
+      placeholder="Enter your email" formControlName="email" name="email">
+    <mat-error *ngIf="form.controls.email.errors">
+      This is required
+    </mat-error>
+  </mat-form-field>
+  
+  <!--dynamic control loop-->
+  <div  *ngIf="form.controls.itemRows" formArrayName="itemRows">
+    <div 
+      *ngFor="let itemrow of form.controls.itemRows.controls; let index=index;let last = last;" 
+      [formGroupName]="index">
+      <div 
+        fxLayout="row" 
+        fxLayoutAlign="space-between center" >
+      <!-- {{itemrow | json}} -->
+        <mat-form-field>
+          <input 
+            matInput 
+            required
+            placeholder="Enter your subject" 
+            formControlName="item"
+            name="item">
+          <mat-error *ngIf="form.controls.itemRows['controls'][index].controls['item'].errors"> 
+            This is required
+          </mat-error>
+        </mat-form-field>
+
+        <span>&nbsp; </span>
+
+        <button 
+          type="button" 
+          mat-mini-fab 
+          color="accent" 
+          (click)="addItems()" 
+          *ngIf="last">
+          <mat-icon 
+            aria-label="add">add</mat-icon>
+        </button>
+
+        <span>&nbsp; </span>
+        <button 
+          type="button" 
+          mat-mini-fab 
+          color="accent" 
+          *ngIf="!last"
+          (click)="removeItems(index)">
+          <mat-icon aria-label="remove icon">remove</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign='center center'>
+    <button 
+      mat-raised-button
+      color="primary">
+      Submit
+    </button>
+  </div>
+
+</form>
